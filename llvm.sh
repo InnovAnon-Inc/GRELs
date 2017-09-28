@@ -1,12 +1,12 @@
 #! /bin/sh
 set -exo nounset
 
-T=`mktemp XXXXXXXX.bc`
-trap "rm -f $T" 0
+T=`mktemp XXXXXXXX`
+trap "rm -f $T.bc" 0
 
 while : ; do
-	polygen llvm.grm > $T
-	#clang -o llvm $T || continue
-	clang -shared -undefined dynamic_lookup -o libllvm.so $T || continue
+	polygen llvm.grm > $T.bc
+	clang -o $T.exe $T.bc || \
+	clang -shared -undefined dynamic_lookup -o lib$T.so $T.bc || continue
 	break
 done

@@ -1,5 +1,5 @@
 *.o
 *.bc
 *.ll
-llvm
-libllvm.so
+*.exe
+lib*.so
