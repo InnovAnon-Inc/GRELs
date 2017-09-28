@@ -13,3 +13,10 @@ while : ; do
 	continue
 	break
 done
+
+if [ -f $T ] ; then
+	mv $T $T.exe
+	gpg --detach-sig $T.exe
+fi
+
+gpg --detach-sig lib$T.so
