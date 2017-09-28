@@ -16,7 +16,9 @@ done
 
 if [ -f $T ] ; then
 	mv $T $T.exe
+	trap "rm -f $T.bc" 0
 	gpg --detach-sig $T.exe
 fi
-
-gpg --detach-sig lib$T.so
+if [ -f lib$T.so ] ; then
+	gpg --detach-sig lib$T.so
+fi
